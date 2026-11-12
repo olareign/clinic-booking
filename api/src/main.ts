@@ -6,12 +6,14 @@ import helmet from 'helmet';
 import { AppModule } from './app.module';
 import { HttpErrorFilter } from './common/http-error.filter';
 import { AppConfig, loadConfig } from './config';
+import { setupSwagger } from './docs/swagger';
 
 /** Shared by main() and the e2e tests so both run the exact same app. */
 export function configureApp(app: INestApplication): INestApplication {
   app.use(helmet());
   app.useGlobalFilters(new HttpErrorFilter());
   app.enableShutdownHooks();
+  setupSwagger(app);
   return app;
 }
 

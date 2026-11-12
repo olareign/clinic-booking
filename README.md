@@ -15,6 +15,13 @@ browser ──► Next.js (Vercel) ──X-API-Key──► NestJS API (Render) 
 
 The browser never sees the API key. Pages and form submits run on the Next.js server (server components + server actions), and only that server calls the API.
 
+## API docs (Swagger)
+
+- **Swagger UI:** `/docs` (live: https://clinic-booking-api-95mz.onrender.com/docs). Click **Authorize**, paste the API key, then use **Try it out** on any endpoint.
+- **Raw OpenAPI JSON:** `/openapi.json`
+
+The docs pages themselves are public; every endpoint they describe still needs `X-API-Key`. The document is generated from the controllers, and `test/openapi.e2e-spec.ts` compares it with the official spec (saved in `test/fixtures/assessment-spec.json`): the same endpoints, status codes, parameters, schema fields and auth header.
+
 ## Run locally
 
 Needs Node 20+ and pnpm, plus a Postgres URL (a free Neon branch works).
