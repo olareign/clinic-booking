@@ -1,9 +1,20 @@
 import { Body, Controller, Get, HttpCode, Post, Query } from '@nestjs/common';
-import { ApiBadRequestResponse, ApiBody, ApiOkResponse, ApiOperation, ApiQuery, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiHeader,
+  ApiOkResponse,
+  ApiOperation,
+  ApiQuery,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 import { ErrorSchema, ResetBodySchema, ResetResultSchema, SlotListSchema } from '../docs/schemas';
+import { API_KEY_HEADER_DOC } from '../docs/swagger';
 import { parseSlots, SlotsService } from './slots.service';
 
 @ApiTags('default')
+@ApiHeader(API_KEY_HEADER_DOC)
 @ApiUnauthorizedResponse({ description: 'Missing or wrong X-API-Key (level 2)', type: ErrorSchema })
 @Controller()
 export class SlotsController {

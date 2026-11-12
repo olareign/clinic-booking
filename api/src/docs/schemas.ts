@@ -31,7 +31,7 @@ export class ResetResultSchema {
 }
 
 export class NewBookingSchema {
-  @ApiProperty({ example: 's1' }) slot_id!: string;
+  @ApiProperty({ example: 's1', description: 'A real slot `id` from GET /slots' }) slot_id!: string;
   @ApiProperty({ example: 'Ada Obi' }) name!: string;
   @ApiProperty({ example: 'ada@example.com' }) email!: string;
 }

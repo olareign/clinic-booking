@@ -17,11 +17,13 @@ import {
 } from '@nestjs/swagger';
 import { Response } from 'express';
 import { BookingPageSchema, BookingSchema, ErrorSchema, NewBookingSchema } from '../docs/schemas';
+import { API_KEY_HEADER_DOC } from '../docs/swagger';
 import { normalizeEmail } from './booking.validation';
 import { BookingsService } from './bookings.service';
 import { parseLimit } from './cursor';
 
 @ApiTags('default')
+@ApiHeader(API_KEY_HEADER_DOC)
 @ApiUnauthorizedResponse({ description: 'Missing or wrong X-API-Key (level 2)', type: ErrorSchema })
 @Controller('bookings')
 export class BookingsController {
